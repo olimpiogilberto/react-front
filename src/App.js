@@ -16,7 +16,7 @@ class App extends Component {
 
   componentDidMount(){
      $.ajax({
-        url:"http://192.168.0.4:3000/autores",
+        url:"http://192.168.0.10:3000/autores",
         dataType: 'json',
         success:function(resposta){    
         this.setState({lista:resposta});
@@ -27,16 +27,15 @@ class App extends Component {
 
   enviaForm(evento){
     evento.preventDefault();
-
     $.ajax({
-      url:"http://192.168.0.4:3000/autores",
+      url:"http://192.168.0.10:3000/autores",
       contentType: 'application/json',
       dataType: 'json',
       type: 'post',
       data: JSON.stringify({nome:this.state.nome,email:this.state.email,senha:this.state.senha}),
       success: function(resposta){
-          console.log("sucesso");
-        },
+        this.setState({lista:resposta});
+        }.bind(this),
         error: function(resposta){
           console.log("erro");
         }});
@@ -56,8 +55,10 @@ class App extends Component {
 
   }
     
-  render() {       
+  render() {      
+    console.log(this.state) 
     return (
+      
       <div id="layout">
           
           <a href="#menu" id="menuLink" className="menu-link">
