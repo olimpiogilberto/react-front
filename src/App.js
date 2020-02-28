@@ -16,7 +16,7 @@ class App extends Component {
 
   componentDidMount(){
      $.ajax({
-        url:"http://192.168.0.10:3000/autores",
+        url:"http://localhost:3333/autores",
         dataType: 'json',
         success:function(resposta){    
         this.setState({lista:resposta});
@@ -28,7 +28,7 @@ class App extends Component {
   enviaForm(evento){
     evento.preventDefault();
     $.ajax({
-      url:"http://192.168.0.10:3000/autores",
+      url:"http://localhost:3333/autores",
       contentType: 'application/json',
       dataType: 'json',
       type: 'post',
